@@ -1,0 +1,26 @@
+<html>
+  <head></head>
+  <body>
+    <script>
+      // Register Service Worker
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js');
+        });
+      }
+      function download() {
+        // Get values from inputs
+        const url = window.target_url.value;
+        const filename = window.filename.value;
+
+        const a = document.createElement('a');
+        a.href = `/swdonwload?url=${encodeURIComponent(url)}&filename=${filename}`;
+        a.target = '_blank';
+        a.click();
+      }
+    </script>
+    <input type="text" id="target_url" placeholder="URL" size="100"><br>
+    <input type="text" id="filename" placeholder="File name"><br>
+    <button onclick="download()">Download</button>
+  </body>
+</html>
